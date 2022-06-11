@@ -6,6 +6,7 @@ echo what cpu?
 read cpu
 
 if [ "$cpu" == "amd" ]
+
 	then
 	
 		tput sgr0
@@ -15,14 +16,14 @@ if [ "$cpu" == "amd" ]
 		tput sgr0
 	
 	elif [ "$cpu" == "intel" ]; then
-
+	
 		sudo pacman -S intel-ucode --noconfirm --needed
 		tput setaf 2
 		echo -e "\033[5m ${cpu} CPU microcode has been installed"
 		tput sgr0
-	
+		
 	else
-
+	
 		tput setaf 1
 		echo -e "\033[5m CPU microcode has been NOT installed"
 		tput sgr0
@@ -36,12 +37,16 @@ echo what gpu?
 read gpu
 
 if [ "$gpu" == "amd" ]
+
 	then
+	
 		sudo pacman -S mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver libvdpau-va-gl --noconfirm --needed
 		tput setaf 2
 		echo -e "\033[5m ${gpu} GPU driver has been installed"
 		tput sgr0
+		
 	else
+	
 		tput setaf 1
 		echo -e "\033[5m GPU driver has been NOT installed"
 		tput sgr0
@@ -63,11 +68,13 @@ func_install()
 	if pacman -Qi $1 &> /dev/null
 
 		then
+		
 			tput sgr0
 			sudo pacman -Rn --noconfirm $1
 			echo "Uninstalling package" $1
 
 		else
+		
 			tput sgr0
 			tput setaf 4
 			echo ""$1" is not installed"
@@ -92,10 +99,12 @@ count=0
 for name in "${list[@]}"
 
 	do
+	
 		count=$[count+1]
 		tput setaf 3
 		echo -e "\033[7m Uninstalling "$count"："$name;
 		func_install $name
+		
 	done
 
 tput setaf 2
@@ -110,11 +119,13 @@ func_install()
 	if pacman -Qi $1 &> /dev/null
 
 		then
+		
 			tput sgr0
 			tput setaf 4
 			echo ""$1" is installed"
 
 		else
+		
 			tput sgr0
 			sudo pacman -S --noconfirm --needed $1
 			echo "Installing package" $1
@@ -167,6 +178,7 @@ for name in "${list[@]}"
 		tput setaf 3
 		echo -e "\033[7m Installing "$count"："$name;
 		func_install $name
+		
 	done
 
 tput setaf 2
@@ -191,11 +203,13 @@ func_install()
 	if pacman -Qi $1 &> /dev/null
 
 		then
+		
 			tput sgr0
 			tput setaf 4
 			echo ""$1" is installed"
 
 		else
+		
 			tput sgr0
 			yay -S --noconfirm --needed $1
 			echo "Installing package" $1
@@ -220,6 +234,7 @@ for name in "${list[@]}"
 		tput setaf 3
 		echo -e "\033[7m Installing "$count"："$name;
 		func_install $name
+		
 	done
 
 tput setaf 2
