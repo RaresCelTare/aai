@@ -1,0 +1,197 @@
+#!/bin/bash
+
+#####Uniformize GTK & QT look#####
+echo "QT_STYLE_OVERRIDE=kvantum" | sudo tee -a /etc/environment
+echo "GTK_IM_MODULE=fcitx" | sudo tee -a /etc/environment
+echo "QT_IM_MODULE=fcitx" | sudo tee -a /etc/environment
+echo "XMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment
+
+#####Uninstall programs#####
+func_install()
+{
+	if pacman -Qi $1 &> /dev/null
+
+		then
+			tput sgr0
+			sudo pacman -Rn --noconfirm $1
+			echo "Uninstalling package" $1
+
+		else
+			tput sgr0
+			tput setaf 4
+			echo ""$1" is not installed"
+
+	fi
+}
+
+list=(
+		htop
+		parole
+		ristretto
+		vim
+		vim-runtime
+		xarchiver
+		xfburn
+		xfce4-sensors-plugin
+		xfce4-taskmanager
+	)
+
+count=0
+
+for name in "${list[@]}"
+
+	do
+		count=$[count+1]
+		tput setaf 3
+		echo -e "\033[7m Uninstalling "$count"："$name;
+		func_install $name
+	done
+
+tput setaf 2
+echo -e "\033[5m Software has been uninstalled"
+tput sgr0
+
+#####Install programs#####
+func_install()
+{
+	if pacman -Qi $1 &> /dev/null
+
+		then
+			tput sgr0
+			tput setaf 4
+			echo ""$1" is installed"
+
+		else
+			tput sgr0
+			sudo pacman -S --noconfirm --needed $1
+			echo "Installing package" $1
+
+	fi
+}
+
+list=(
+		
+		arc-gtk-theme
+		btop
+		evince
+		fcitx5
+		fcitx5-configtool
+		fcitx5-gtk
+		fcitx5-mozc
+		fcitx5-qt
+		ffmpeg
+		file-roller
+		git
+		gnome-calculator
+		gnome-disk-utility
+		gnome-font-viewer
+		gtk4
+		gvfs-mtp
+		kvantum
+		libreoffice-fresh
+		linux-headers
+		lxtask
+		mediainfo
+		mesa-vdpau
+		mpv
+		ntfs-3g
+		p7zip
+		papirus-icon-theme
+		qbittorrent
+		ttf-ubuntu-font-family
+		vdpauinfo
+		viewnior
+		yt-dlp
+		zip
+	)
+
+count=0
+
+for name in "${list[@]}"
+
+	do
+		count=$[count+1]
+		tput setaf 3
+		echo -e "\033[7m Installing "$count"："$name;
+		func_install $name
+	done
+
+tput setaf 2
+echo -e "\033[5m Software has been installed"
+tput sgr0
+
+
+
+#####Install CPU microcode#####
+echo what cpu?
+read cpu
+
+if ${cpu}==amd do
+{
+sudo pacman -S amd-ucode --no-confirm
+else if ${cpu}==intel do pacman -S intel-ucode --no-confirm
+fi
+} fi
+
+echo -e "\033[5m ${cpu} CPU microcode has been installed"
+
+
+
+#####Install GPU driver#####
+echo what gpu?
+read gpu
+
+if ${gpu}==amd do
+sudo pacman -S mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau libva-vdpau-driver lib32-libva-vdpau-driver libvdpau-va-gl --no-confirm
+fi
+echo -e "\033[5m ${gpu} GPU driver has been installed"
+
+
+
+#####INSTALL YAY#####
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin/
+makepkg -si --no-confirm
+
+
+
+#####INSTALL AUR PROGRAMS#####
+func_install()
+{
+	if pacman -Qi $1 &> /dev/null
+
+		then
+			tput sgr0
+			tput setaf 4
+			echo ""$1" is installed"
+
+		else
+			tput sgr0
+			yay -S --noconfirm --needed $1
+			echo "Installing package" $1
+
+	fi
+}
+
+list=(
+		breeze-snow-cursor-theme
+		kvantum-theme-arc
+		librewolf-bin
+		timeshift
+		timeshit-autosnap
+     )
+
+count=0
+
+for name in "${list[@]}"
+
+	do
+		count=$[count+1]
+		tput setaf 3
+		echo -e "\033[7m Installing "$count"："$name;
+		func_install $name
+	done
+
+tput setaf 2
+echo -e "\033[5m Software has been installed"
+tput sgr0
