@@ -219,10 +219,11 @@ func_install()
 
 list=(
 		breeze-snow-cursor-theme
+		inxi
 		kvantum-theme-arc
 		librewolf-bin
 		timeshift
-		timeshit-autosnap
+		timeshift-autosnap
      )
 
 count=0
