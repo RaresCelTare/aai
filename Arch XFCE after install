@@ -62,6 +62,17 @@ echo "XMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment
 
 
 
+#####Edit pacman.conf#####
+#COMMENT ^. // replaces first character "." with the nothing between the slashes
+sudo sed -i '/#Color/s/^. //' /etc/pacman.conf
+sudo sed -i '/#VerbosePkgLists/s/^. //' /etc/pacman.conf
+sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman.conf
+#COMMENT s/^/# adds # to the beginning of the line
+#COMMENT s/\n/\n#/ replaces /n(weline) with /n(something else)
+sudo sed -i '/\[multilib-testing\]/!b;N;s/^/#/;s/\n/\n#/' /etc/pacman.conf
+
+
+
 #####Uninstall programs#####
 func_install()
 {
@@ -187,7 +198,7 @@ tput sgr0
 
 
 
-#####INSTALL YAY#####
+#####Install YAY#####
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin/
 makepkg -si --noconfirm
@@ -241,11 +252,3 @@ for name in "${list[@]}"
 tput setaf 2
 echo -e "\033[5m Software has been installed"
 tput sgr0
-
-#####Edit pacman.conf#####
-#COMMENT ^. // replaces first character "." with the nothing between the slashes
-sudo sed -i '/#Color/s/^. //' /etc/pacman.conf
-sudo sed -i '/#VerbosePkgLists/s/^. //' /etc/pacman.conf
-sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman.conf
-#COMMENT */#/ adds # at the beginning of the line
-sudo sed -i '/\[multilib-testing\]/!b;N;s/^/#/;s/\n/\n#/' /etc/pacman.conf
