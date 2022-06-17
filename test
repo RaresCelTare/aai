@@ -1,6 +1,0 @@
-#!/bin/bash
-sudo sed -i 's/#Color/color/g' /etc/pacman.conf
-sudo sed -i 's/#VerbosePkgLists/VerbosePkgLists/g' /etc/pacman.conf
-sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10/g' /etc/pacman.conf
-sudo sed -i 's/[multilib-testing]/#[multilib-testing]/g' /etc/pacman.conf
-sudo sed -i 's,Include = /etc/pacman.d/mirrorlist,#Include = /etc/pacman.d/mirrorlist,g' /etc/pacman.conf
