@@ -246,6 +246,6 @@ tput sgr0
 #COMMENT ^. // replaces first character "." with the nothing between the slashes
 sudo sed -i '/#Color/s/^. //' /etc/pacman.conf
 sudo sed -i '/#VerbosePkgLists/s/^. //' /etc/pacman.conf
-sudo sed -i '/#ParallelDownloads = 5/!b;N;S/.//;/\n/\nILoveCandy/' /etc/pacman.conf
+sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman.conf
 #COMMENT */#/ adds # at the beginning of the line
-sudo sed -i '/[multilib-testing\]/!b;N;S/M/#/;/\n/\n#/' /etc/pacman.conf
+sudo sed -i '/\[multilib-testing\]/!b;N;s/^/#/;s/\n/\n#/' /etc/pacman.conf
