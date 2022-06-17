@@ -241,3 +241,11 @@ for name in "${list[@]}"
 tput setaf 2
 echo -e "\033[5m Software has been installed"
 tput sgr0
+
+#####Edit pacman.conf#####
+#COMMENT ^. // replaces first character "." with the nothing between the slashes
+sudo sed -i '/#Color/s/^. //' /etc/pacman.conf
+sudo sed -i '/#VerbosePkgLists/s/^. //' /etc/pacman.conf
+sudo sed -i '/#ParallelDownloads = 5/!b;N;S/.//;/\n/\nILoveCandy/' /etc/pacman.conf
+#COMMENT */#/ adds # at the beginning of the line
+sudo sed -i '/[multilib-testing\]/!b;N;S/M/#/;/\n/\n#/' /etc/pacman.conf
