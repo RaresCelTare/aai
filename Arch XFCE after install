@@ -63,12 +63,12 @@ echo "XMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment
 
 
 #####Edit pacman.conf#####
-#COMMENT /s/^.// replaces character 1 "." with what's withing the //, so it deletes it
+#COMMENT /s/^.// replaces character 1 "." with what's within the //, so it deletes it
 sudo sed -i '/#Color/s/^.//' /etc/pacman.conf
 sudo sed -i '/#VerbosePkgLists/s/^.//' /etc/pacman.conf
-sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman.conf
-#COMMENT /s/^/#/ replaces character 0 with what's withing the //, so it adds # to the beginning of the line
 #COMMENT /s/\n/\n#/ replaces \n(ext line) with \n(ext something else)
+sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman.conf
+#COMMENT /s/^/#/ replaces character 0 with what's within the //, so it adds # to the beginning of the line
 sudo sed -i '/\[multilib-testing\]/!b;N;s/^/#/;s/\n/\n#/' /etc/pacman.conf
 
 
