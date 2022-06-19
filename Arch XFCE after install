@@ -306,13 +306,13 @@ sudo sed -i 's/#theme-name=/theme-name=Arc-Dark/' /etc/lightdm/lightdm-gtk-greet
 sudo sed -i 's/#icon-theme-name=/icon-theme-name=Papirus-Dark/' /etc/lightdm/lightdm-gtk-greeter.conf
 sudo sed -i 's/#font-name=/font-name=Ubuntu 12/' /etc/lightdm/lightdm-gtk-greeter.conf
 
-CURSOR=(grep cursor-theme-name=capitaine /etc/environment)
+CURSOR=(grep cursor-theme-name=capitaine /etc/lightdm/lightdm-gtk-greeter.conf)
 
 if [ "CURSOR" != "cursor-theme-name=capitaine-cursors-light" ]
 
 	then
 	
-		sudo awk 'BEGIN{printf "\ncursor-theme-name=capitaine-cursors-light" >> "/etc/environment"}'
+		sudo awk 'BEGIN{printf "\ncursor-theme-name=capitaine-cursors-light" >> "/etc/lightdm/lightdm-gtk-greeter.conf"}'
 	
 fi
 
