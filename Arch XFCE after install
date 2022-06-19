@@ -56,10 +56,14 @@ fi
 
 #####Uniformize GTK & QT look#####
 QTSTYLE=(grep QT_STYLE_OVERRIDE /etc/environment)
-    if [ "QTSTYLE" != "QT_STYLE_OVERRIDE=kvantum" ]
-        then
-        sudo awk 'BEGIN{printf "\nQT_STYLE_OVERRIDE=kvantum" >> "/etc/environment"}'
-    fi
+
+if [ "QTSTYLE" != "QT_STYLE_OVERRIDE=kvantum" ]
+
+	then
+	
+		sudo awk 'BEGIN{printf "\nQT_STYLE_OVERRIDE=kvantum" >> "/etc/environment"}'
+	
+fi
 
 
 
@@ -68,20 +72,29 @@ GTK=(grep GTK_IM_MODULE /etc/environment)
 QTMOD=(grep QT_IM_MODULE /etc/environment)
 XMOD=(grep XMODIFIERS=@im /etc/environment)
     
-    if [ "GTK" != "GTK_IM_MODULE=fcitx" ]
-        then
-        sudo awk 'BEGIN{printf "\nGTK_IM_MODULE=fcitx" >> "/etc/environment"}'
-    fi
+if [ "GTK" != "GTK_IM_MODULE=fcitx" ]
 
-    if [ "QTMOD" != "QT_IM_MODULE=fcitx" ]
-        then
-        sudo awk 'BEGIN{printf "\nQT_IM_MODULE=fcitx" >> "/etc/environment"}'
-    fi
+	then
+	
+		sudo awk 'BEGIN{printf "\nGTK_IM_MODULE=fcitx" >> "/etc/environment"}'
+	
+fi
 
-    if [ "XMOD" != "XMODIFIERS=@im=fcitx=fcitx" ]
-        then
-        sudo awk 'BEGIN{printf "\nXMODIFIERS=@im=fcitx" >> "/etc/environment"}'
-    fi
+if [ "QTMOD" != "QT_IM_MODULE=fcitx" ]
+
+	then
+	
+		sudo awk 'BEGIN{printf "\nQT_IM_MODULE=fcitx" >> "/etc/environment"}'
+	
+fi
+
+if [ "XMOD" != "XMODIFIERS=@im=fcitx=fcitx" ]
+
+	then
+	
+		sudo awk 'BEGIN{printf "\nXMODIFIERS=@im=fcitx" >> "/etc/environment"}'
+	
+fi
 
 
 
@@ -93,6 +106,7 @@ sudo sed -i '/#VerbosePkgLists/s/^.//' /etc/pacman.conf
 sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman.conf
 #COMMENT /s/^/#/ replaces character 0 with what's within the //, so it adds # to the beginning of the line
 sudo sed -i '/\[multilib-testing\]/!b;N;s/^/#/;s/\n/\n#/' /etc/pacman.conf
+sudo sed -i '/##\[multilib-testing\]/!b;N;s/^.//;s/\n##/\n#/' /etc/pacman.conf
 
 
 
@@ -136,7 +150,7 @@ for name in "${list[@]}"
 	
 		count=$[count+1]
 		tput setaf 3
-		echo -e "\033[7m Uninstalling "$count"："$name;
+		echo -e "\033[7m Uninstalling "$count":"$name;
 		func_install $name
 		
 	done
@@ -210,7 +224,7 @@ for name in "${list[@]}"
 	do
 		count=$[count+1]
 		tput setaf 3
-		echo -e "\033[7m Installing "$count"："$name;
+		echo -e "\033[7m Installing "$count":"$name;
 		func_install $name
 		
 	done
@@ -267,7 +281,7 @@ for name in "${list[@]}"
 	do
 		count=$[count+1]
 		tput setaf 3
-		echo -e "\033[7m Installing "$count"："$name;
+		echo -e "\033[7m Installing "$count":"$name;
 		func_install $name
 		
 	done
