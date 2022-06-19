@@ -318,7 +318,5 @@ fi
 
 
 
-
-
-
-
+#####Change cursor theme#####
+xfconf-query --channel xsettings --property /Gtk/CursorThemeName --set capitaine-cursors-light
