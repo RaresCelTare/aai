@@ -306,6 +306,7 @@ func_install()
 }
 
 list=(
+		gtkhash-thunar
 		inxi
 		kvantum-theme-arc
 		librewolf-bin
