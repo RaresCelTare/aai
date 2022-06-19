@@ -11,6 +11,9 @@ sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman
 #COMMENT /s/^/#/ replaces character 0 with what's within the //, so it adds # to the beginning of the line
 sudo sed -i '/\[multilib-testing\]/!b;N;s/^/#/;s/\n/\n#/' /etc/pacman.conf
 sudo sed -i '/##\[multilib-testing\]/!b;N;s/^.//;s/\n##/\n#/' /etc/pacman.conf
+tput setaf 2
+echo -e "\033[5m Pacman Config Set"
+tput sgr0
 
 
 
@@ -75,6 +78,9 @@ if [ "QTSTYLE" != "QT_STYLE_OVERRIDE=kvantum" ]
 	then
 	
 		sudo awk 'BEGIN{printf "\nQT_STYLE_OVERRIDE=kvantum" >> "/etc/environment"}'
+		tput setaf 2
+		echo -e "\033[5m GTK and QT Style Override Set"
+		tput sgr0
 	
 fi
 
@@ -90,7 +96,7 @@ if [ "GTK" != "GTK_IM_MODULE=fcitx" ]
 	then
 	
 		sudo awk 'BEGIN{printf "\nGTK_IM_MODULE=fcitx" >> "/etc/environment"}'
-	
+
 fi
 
 if [ "QTMOD" != "QT_IM_MODULE=fcitx" ]
@@ -98,7 +104,7 @@ if [ "QTMOD" != "QT_IM_MODULE=fcitx" ]
 	then
 	
 		sudo awk 'BEGIN{printf "\nQT_IM_MODULE=fcitx" >> "/etc/environment"}'
-	
+		
 fi
 
 if [ "XMOD" != "XMODIFIERS=@im=fcitx=fcitx" ]
@@ -106,7 +112,10 @@ if [ "XMOD" != "XMODIFIERS=@im=fcitx=fcitx" ]
 	then
 	
 		sudo awk 'BEGIN{printf "\nXMODIFIERS=@im=fcitx" >> "/etc/environment"}'
-	
+		tput setaf 2
+		echo -e "\033[5m Fcitx Is Now Set"
+		tput sgr0
+
 fi
 
 
@@ -116,7 +125,9 @@ sudo sed -i 's/5/1/' /etc/default/grub
 sudo sed -i 's/ quiet//' /etc/default/grub
 sudo sed -i '/#GRUB_TERMINAL_OUTPUT/s/^.//' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-
+tput setaf 2
+echo -e "\033[5m Grub Settings Updated"
+tput sgr0
 
 
 #####Uninstall programs#####
@@ -249,6 +260,9 @@ tput sgr0
 sudo groupadd -r autologin
 sudo gpasswd -a $USER autologin
 sudo sed -i "s/#autologin-user=/autologin-user=$USER/" /etc/lightdm/lightdm.conf
+tput setaf 2
+echo -e "\033[5m LightDM Set To Autologin"
+tput sgr0
 
 
 
@@ -267,21 +281,35 @@ if [ "CURSOR" != "cursor-theme-name=capitaine-cursors-light" ]
 		sudo awk 'BEGIN{printf "\ncursor-theme-name=capitaine-cursors-light" >> "/etc/lightdm/lightdm-gtk-greeter.conf"}'
 	
 fi
+tput setaf 2
+echo -e "\033[5m LightDM Customizations Set"
+tput sgr0
 
 
 
 #####Change cursor theme#####
 xfconf-query --channel xsettings --property /Gtk/CursorThemeName --set capitaine-cursors-light
+tput setaf 2
+echo -e "\033[5m Cursor Theme Set"
+tput sgr0
 
 
 
 #####Install YAY#####
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin/
-makepkg -si --noconfirm
-tput setaf 2
-echo -e "\033[5m YAY has been installed"
-tput sgr0
+YAY=$(ls | grep yay)
+
+if [ "YAY" != "yay-bin" ]
+
+	then
+	
+		git clone https://aur.archlinux.org/yay-bin.git
+		cd yay-bin/
+		makepkg -si --noconfirm
+		tput setaf 2
+		echo -e "\033[5m YAY has been installed"
+		tput sgr0
+	
+fi
 
 
 
@@ -328,4 +356,12 @@ for name in "${list[@]}"
 
 tput setaf 2
 echo -e "\033[5m Software has been installed"
+tput sgr0
+
+
+
+#####Change Timeshift max snapshots#####
+sudo sed -i 's/3/10/' /etc/timeshift-autosnap.conf
+tput setaf 2
+echo -e "\033[5m Timeshift Max Snapshots Set To 10"
 tput sgr0
