@@ -1,6 +1,19 @@
 #!/bin/bash
 
 
+
+#####Edit pacman.conf#####
+#COMMENT /s/^.// replaces character 1 "." with what's within the //, so it deletes it
+sudo sed -i '/#Color/s/^.//' /etc/pacman.conf
+sudo sed -i '/#VerbosePkgLists/s/^.//' /etc/pacman.conf
+#COMMENT /s/\n/\n#/ replaces \n(ext line) with \n(ext something else)
+sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman.conf
+#COMMENT /s/^/#/ replaces character 0 with what's within the //, so it adds # to the beginning of the line
+sudo sed -i '/\[multilib-testing\]/!b;N;s/^/#/;s/\n/\n#/' /etc/pacman.conf
+sudo sed -i '/##\[multilib-testing\]/!b;N;s/^.//;s/\n##/\n#/' /etc/pacman.conf
+
+
+
 #####Install CPU microcode#####
 echo what cpu?
 read cpu
@@ -98,20 +111,8 @@ fi
 
 
 
-#####Edit pacman.conf#####
-#COMMENT /s/^.// replaces character 1 "." with what's within the //, so it deletes it
-sudo sed -i '/#Color/s/^.//' /etc/pacman.conf
-sudo sed -i '/#VerbosePkgLists/s/^.//' /etc/pacman.conf
-#COMMENT /s/\n/\n#/ replaces \n(ext line) with \n(ext something else)
-sudo sed -i '/#ParallelDownloads = 5/!b;N;s/^.//;s/\n/\nILoveCandy/' /etc/pacman.conf
-#COMMENT /s/^/#/ replaces character 0 with what's within the //, so it adds # to the beginning of the line
-sudo sed -i '/\[multilib-testing\]/!b;N;s/^/#/;s/\n/\n#/' /etc/pacman.conf
-sudo sed -i '/##\[multilib-testing\]/!b;N;s/^.//;s/\n##/\n#/' /etc/pacman.conf
-
-
-
 #####Update grub settings#####
-sudo sed -i 's/5/1' /etc/default/grub
+sudo sed -i 's/5/1/' /etc/default/grub
 sudo sed -i 's/ quiet//' /etc/default/grub
 sudo sed -i '/#GRUB_TERMINAL_OUTPUT/s/^.//' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
