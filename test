@@ -1,0 +1,27 @@
+#!/bin/bash
+
+GTK=$(grep GTK /etc/environment)
+QT=$(grep QT /etc/environment)
+XMOD=$(grep XMODIFIERS /etc/environment)
+
+for ((i=0;i<3;i++)) do
+
+  if [ "$GTK" != "GTK_IM_MODULE=fcitx" ]
+    then
+      sudo awk 'BEGIN{printf "\nGTK_IM_MODULE=fcitx" >> "/etc/environment"}'
+      i=$i+1
+  fi
+
+  if [ "$QT" != "QT_IM_MODULE=fcitx" ]
+    then
+      sudo awk 'BEGIN{printf "\nQT_IM_MODULE=fcitx" >> "/etc/environment"}'
+      i=$i+1
+  fi
+
+  if [ "$XMOD" != "XMODIFIERS=@im=fcitx" ]
+    then
+      sudo awk 'BEGIN{printf "\nXMODIFIERS=@im=fcitx" >> "/etc/environment"}'
+      i=$i+1
+  fi
+
+done
