@@ -55,50 +55,33 @@ fi
 
 
 #####Uniformize GTK & QT look#####
-for ((i=0;i<1;i++)) do
-
-    QTSTYLE=(grep QT_STYLE_OVERRIDE /etc/environment)
-
-    if [ "QTSTYLE" = "QT_STYLE_OVERRIDE=kvantum" ]
-        then i=$[i+1]
-            else
-            sudo awk 'BEGIN{printf "\nQT_STYLE_OVERRIDE=kvantum" >> "/etc/environment"}'
-            i=$[i+1]
+QTSTYLE=(grep QT_STYLE_OVERRIDE /etc/environment)
+    if [ "QTSTYLE" != "QT_STYLE_OVERRIDE=kvantum" ]
+        then
+        sudo awk 'BEGIN{printf "\nQT_STYLE_OVERRIDE=kvantum" >> "/etc/environment"}'
     fi
-    
-done
 
 
 
 #####Add fcitx variables#####
-for ((i=0;i<3;i++)) do
-
-    GTK=(grep GTK_IM_MODULE /etc/environment)
-    QTMOD=(grep QT_IM_MODULE /etc/environment)
-    XMOD=(grep XMODIFIERS=@im /etc/environment)
+GTK=(grep GTK_IM_MODULE /etc/environment)
+QTMOD=(grep QT_IM_MODULE /etc/environment)
+XMOD=(grep XMODIFIERS=@im /etc/environment)
     
-    if [ "GTK" = "GTK_IM_MODULE=fcitx" ]
-        then i=$[i+1]
-            else
-            sudo awk 'BEGIN{printf "\nGTK_IM_MODULE=fcitx" >> "/etc/environment"}'
-            i=$[i+1]
+    if [ "GTK" != "GTK_IM_MODULE=fcitx" ]
+        then
+        sudo awk 'BEGIN{printf "\nGTK_IM_MODULE=fcitx" >> "/etc/environment"}'
     fi
 
-    if [ "QTMOD" = "QT_IM_MODULE=fcitx" ]
-        then i=$[i+1]
-            else
-            sudo awk 'BEGIN{printf "\nQT_IM_MODULE=fcitx" >> "/etc/environment"}'
-            i=$[i+1]
+    if [ "QTMOD" != "QT_IM_MODULE=fcitx" ]
+        then
+        sudo awk 'BEGIN{printf "\nQT_IM_MODULE=fcitx" >> "/etc/environment"}'
     fi
 
-    if [ "XMOD" = "XMODIFIERS=@im=fcitx=fcitx" ]
-        then i=$[i+1]
-            else
-            sudo awk 'BEGIN{printf "\nXMODIFIERS=@im=fcitx" >> "/etc/environment"}'
-            i=$[i+1]
+    if [ "XMOD" != "XMODIFIERS=@im=fcitx=fcitx" ]
+        then
+        sudo awk 'BEGIN{printf "\nXMODIFIERS=@im=fcitx" >> "/etc/environment"}'
     fi
-    
-done
 
 
 
