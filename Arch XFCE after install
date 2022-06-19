@@ -110,6 +110,14 @@ sudo sed -i '/##\[multilib-testing\]/!b;N;s/^.//;s/\n##/\n#/' /etc/pacman.conf
 
 
 
+#####Update grub settings#####
+sudo sed -i 's/5/1' /etc/default/grub
+sudo sed -i 's/ quiet//' /etc/default/grub
+sudo sed -i '/#GRUB_TERMINAL_OUTPUT/s/^.//' /etc/default/grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+
+
 #####Uninstall programs#####
 func_install()
 {
@@ -236,6 +244,36 @@ tput sgr0
 
 
 
+#####Enable LightDM autologin######
+sudo groupadd -r autologin
+sudo gpasswd -a $USER autologin
+sudo sed -i "s/#autologin-user=/autologin-user=$USER/" /etc/lightdm/lightdm.conf
+
+
+
+#####Customize LightDM#####
+sudo sed -i 's/#background=/background=\/usr\/share\/backgrounds\/archlinux\/awesome.png/' /etc/lightdm/lightdm-gtk-greeter.conf
+sudo sed -i 's/#theme-name=/theme-name=Arc-Dark/' /etc/lightdm/lightdm-gtk-greeter.conf
+sudo sed -i 's/#icon-theme-name=/icon-theme-name=Papirus-Dark/' /etc/lightdm/lightdm-gtk-greeter.conf
+sudo sed -i 's/#font-name=/font-name=Ubuntu 12/' /etc/lightdm/lightdm-gtk-greeter.conf
+
+CURSOR=(grep cursor-theme-name=capitaine /etc/lightdm/lightdm-gtk-greeter.conf)
+
+if [ "CURSOR" != "cursor-theme-name=capitaine-cursors-light" ]
+
+	then
+	
+		sudo awk 'BEGIN{printf "\ncursor-theme-name=capitaine-cursors-light" >> "/etc/lightdm/lightdm-gtk-greeter.conf"}'
+	
+fi
+
+
+
+#####Change cursor theme#####
+xfconf-query --channel xsettings --property /Gtk/CursorThemeName --set capitaine-cursors-light
+
+
+
 #####Install YAY#####
 git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin/
@@ -267,7 +305,6 @@ func_install()
 }
 
 list=(
-		breeze-snow-cursor-theme
 		inxi
 		kvantum-theme-arc
 		librewolf-bin
@@ -290,33 +327,3 @@ for name in "${list[@]}"
 tput setaf 2
 echo -e "\033[5m Software has been installed"
 tput sgr0
-
-
-
-#####Enable LightDM autologin######
-sudo groupadd -r autologin
-sudo gpasswd -a $USER autologin
-sudo sed -i "s/#autologin-user=/autologin-user=$USER/" /etc/lightdm/lightdm.conf
-
-
-
-#####Customize LightDM#####
-sudo sed -i 's/#background=/background=\/usr\/share\/backgrounds\/archlinux\/awesome.png/' /etc/lightdm/lightdm-gtk-greeter.conf
-sudo sed -i 's/#theme-name=/theme-name=Arc-Dark/' /etc/lightdm/lightdm-gtk-greeter.conf
-sudo sed -i 's/#icon-theme-name=/icon-theme-name=Papirus-Dark/' /etc/lightdm/lightdm-gtk-greeter.conf
-sudo sed -i 's/#font-name=/font-name=Ubuntu 12/' /etc/lightdm/lightdm-gtk-greeter.conf
-
-CURSOR=(grep cursor-theme-name=capitaine /etc/lightdm/lightdm-gtk-greeter.conf)
-
-if [ "CURSOR" != "cursor-theme-name=capitaine-cursors-light" ]
-
-	then
-	
-		sudo awk 'BEGIN{printf "\ncursor-theme-name=capitaine-cursors-light" >> "/etc/lightdm/lightdm-gtk-greeter.conf"}'
-	
-fi
-
-
-
-#####Change cursor theme#####
-xfconf-query --channel xsettings --property /Gtk/CursorThemeName --set capitaine-cursors-light
