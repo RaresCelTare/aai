@@ -296,20 +296,12 @@ tput sgr0
 
 
 #####Install YAY#####
-YAY=$(ls | grep yay)
-
-if [ "YAY" != "yay-bin" ]
-
-	then
-	
-		git clone https://aur.archlinux.org/yay-bin.git
-		cd yay-bin/
-		makepkg -si --noconfirm
-		tput setaf 2
-		echo -e "\033[5m YAY has been installed"
-		tput sgr0
-	
-fi
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin/
+makepkg -si --noconfirm
+tput setaf 2
+echo -e "\033[5m YAY has been installed"
+tput sgr0
 
 
 
@@ -365,6 +357,7 @@ sudo sed -i 's/3/10/' /etc/timeshift-autosnap.conf
 tput setaf 2
 echo -e "\033[5m Timeshift Max Snapshots Set To 10"
 tput sgr0
+
 
 
 #####Add fixkeys#####
