@@ -365,3 +365,12 @@ sudo sed -i 's/3/10/' /etc/timeshift-autosnap.conf
 tput setaf 2
 echo -e "\033[5m Timeshift Max Snapshots Set To 10"
 tput sgr0
+
+
+#####Add fixkeys#####
+chmod +x fixkeys
+sudo mv fixkeys /usr/local/bin/
+echo 'alias test=/usr/local/bin/fixkeys' >> ~/.bashrc
+tput setaf 2
+echo -e "\033[5m Fix Keys Script Added"
+tput sgr0
