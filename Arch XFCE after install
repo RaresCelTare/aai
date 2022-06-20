@@ -130,7 +130,7 @@ fi
 
 #####Update grub settings#####
 sudo sed -i 's/5/1/' /etc/default/grub
-sudo sed -i 's/ quiet//' /etc/default/grub
+sudo sed -i 's/ quiet/modprobe.blacklist=pcspkr/' /etc/default/grub
 sudo sed -i '/#GRUB_TERMINAL_OUTPUT/s/^.//' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 tput setaf 2
@@ -229,17 +229,37 @@ func_install()
 }
 
 list=(
+		adobe-source-han-sans-cn-fonts
+		adobe-source-han-sans-jp-fonts
+		adobe-source-han-sans-kr-fonts
+		adobe-source-sans-fonts
+		alsa-firmware
+		android-tools
+		android-udev
+		appstream-glib
+		archlinux-appstream-data
+		a52dec
 		archlinux-wallpaper
 		arc-gtk-theme
+		base-devel
+		bash-completion
 		btop
+		catfish
 		capitaine-cursors
+		dbus-python
+		dkms
 		evince
+		faac
+		faad2
+		fatresize
+		farstream
 		fcitx5
 		fcitx5-configtool
 		fcitx5-gtk
 		fcitx5-mozc
 		fcitx5-qt
 		ffmpeg
+		f2fs-tools
 		file-roller
 		git
 		gnome-calculator
@@ -268,6 +288,10 @@ list=(
 		ttf-roboto
 		ttf-roboto-mono
 		ttf-ubuntu-font-family
+		udftools
+		udiskie
+		ufw
+		unrar
 		vdpauinfo
 		viewnior
 		yt-dlp
@@ -363,6 +387,7 @@ func_install()
 
 list=(
 		arc-kde-git
+		downgrade
 		gtkhash-thunar
 		inxi
 		librewolf-bin
