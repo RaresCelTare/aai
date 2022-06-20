@@ -2,6 +2,14 @@
 
 
 
+#####Add Manjaro bashrc#####
+mv -v bashrc ~/.bashrc
+tput setaf 2
+echo -e "\033[5m Manjaro Bashrc Added"
+tput sgr0
+
+
+
 #####Edit pacman.conf#####
 #COMMENT /s/^.// replaces character 1 "." with what's within the //, so it deletes it
 sudo sed -i '/#Color/s/^.//' /etc/pacman.conf
