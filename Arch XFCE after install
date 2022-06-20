@@ -185,8 +185,21 @@ list=(
 		vim-runtime
 		xarchiver
 		xfburn
+		xfce4-cpufreq-plugin
+		xfce4-cpugraph-plugin
+		xfce4-fsguard-plugin
+		xfce4-genmon-plugin
+		xfce4-eyes-plugin
+		xfce4-mailwatch-plugin
+		xfce4-notes-plugin
 		xfce4-sensors-plugin
+		xfce4-systemload-plugin
 		xfce4-taskmanager
+		xfce4-time-out-plugin
+		xfce4-timer-plugin
+		xfce4-verve-plugin
+		xfce4-weather-plugin
+		
 	)
 
 count=0
@@ -271,14 +284,28 @@ list=(
 		kvantum
 		libreoffice-fresh
 		linux-headers
+		lirc
+		libx86emu
+		lightdm-gtk-greeter-settings
 		lxtask
 		mediainfo
 		mesa-vdpau
 		mpv
 		ntfs-3g
+		ntp
+		noto-fonts
+		numlockx
+		os-prober
+		ostree
 		papirus-icon-theme
+		portaudio
+		ppp
+		pptpclient
 		qbittorrent
 		reflector
+		squashfs-tools
+		tevent
+		tlp
 		ttf-dejavu
 		ttf-droid
 		ttf-font-awesome
@@ -295,7 +322,10 @@ list=(
 		vdpauinfo
 		viewnior
 		yt-dlp
+		xorg-xkill
 		zip
+		zvbi
+		zenity
 	)
 
 count=0
@@ -430,3 +460,7 @@ sudo systemctl enable reflector.timer
 tput setaf 2
 echo -e "\033[5m Reflector Timer Set and Configured"
 tput sgr0
+
+
+sudo systemctl enable ufw
+#sudo systemctl enable tlp
