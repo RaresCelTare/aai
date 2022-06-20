@@ -236,6 +236,7 @@ list=(
 		gnome-calculator
 		gnome-disk-utility
 		gnome-font-viewer
+		grub-btrfs
 		gtk4
 		gvfs-mtp
 		kvantum
