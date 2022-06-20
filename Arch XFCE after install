@@ -355,9 +355,9 @@ func_install()
 }
 
 list=(
+		arc-kde-git
 		gtkhash-thunar
 		inxi
-		kvantum-theme-arc
 		librewolf-bin
 		timeshift
 		timeshift-autosnap
