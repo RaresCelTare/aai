@@ -256,7 +256,6 @@ list=(
 		mesa-vdpau
 		mpv
 		ntfs-3g
-		p7zip
 		papirus-icon-theme
 		qbittorrent
 		reflector
@@ -361,6 +360,7 @@ list=(
 		librewolf-bin
 		timeshift
 		timeshift-autosnap
+		7-zip-full
      )
 
 count=0
