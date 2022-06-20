@@ -259,6 +259,14 @@ list=(
 		papirus-icon-theme
 		qbittorrent
 		reflector
+		ttf-dejavu
+		ttf-droid
+		ttf-font-awesome
+		ttf-hack
+		ttf-ms-fonts
+		ttf-opensans
+		ttf-roboto
+		ttf-roboto-mono
 		ttf-ubuntu-font-family
 		vdpauinfo
 		viewnior
