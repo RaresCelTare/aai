@@ -241,6 +241,7 @@ list=(
 		p7zip
 		papirus-icon-theme
 		qbittorrent
+		reflector
 		ttf-ubuntu-font-family
 		vdpauinfo
 		viewnior
@@ -366,4 +367,15 @@ tput sgr0
 sudo sed -i 's/3/10/' /etc/timeshift-autosnap.conf
 tput setaf 2
 echo -e "\033[5m Timeshift Max Snapshots Set To 10"
+tput sgr0
+
+
+
+#####Activate Reflector#####
+sudo sed -i 's/# --country France,Germany/--country Romania/' /etc/xdg/reflector/reflector.conf
+sudo sed -i 's/5/10/' /etc/xdg/reflector/reflector.conf
+sudo sed -i 's/age/rate/' /etc/xdg/reflector/reflector.conf
+sudo systemctl enable reflector.timer
+tput setaf 2
+echo -e "\033[5m Reflector Timer Set and Configured"
 tput sgr0
