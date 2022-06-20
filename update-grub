@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -x
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
