@@ -130,7 +130,7 @@ fi
 
 #####Update grub settings#####
 sudo sed -i 's/5/1/' /etc/default/grub
-sudo sed -i 's/ quiet/modprobe.blacklist=pcspkr/' /etc/default/grub
+sudo sed -i 's/quiet/modprobe.blacklist=pcspkr/' /etc/default/grub
 sudo sed -i '/#GRUB_TERMINAL_OUTPUT/s/^.//' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 tput setaf 2
