@@ -135,3 +135,18 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
+
+alias cc='rm -rfv ~/.cache/*'
+alias yt='yt-dlp -f bestvideo+bestaudio'
+alias yta='yt-dlp -f bestaudio'
+alias zip='zip -r -v -X -Z store'
+alias mkv4='for f in *.mkv;do ffmpeg -i -c copy mp4;done'
+alias webm4='for f in *.webm;do ffmpeg -i -c copy mp4;done'
+alias opus='for f in *.webm;do ffmpeg -i -c copy opus;done'
+alias aac='for f in *.m4a;do ffmpeg -i -c copy aac;done'
+alias 4chan='for f in *.webm;do ffmpeg -i -c:v hevc -c:a libopus mp4;done'
+alias mov4='for f in *.MOV;do ffmpeg -i  -c:a copy aac;done'
+alias exiftoolt='exiftool -s -time:all'
+alias scan='for FILE in ./*.mkv; do ffmpeg -v error -i  -f null - 2>.log && echo Finished checking  && sleep 60; done'
+alias mi='mediainfo'
+alias cpuspeed='watch -n.1 grep "^cpu MHz" /proc/cpuinfo'
