@@ -467,3 +467,7 @@ tput sgr0
 sudo systemctl enable ufw
 #sudo systemctl enable tlp
 sudo sed -i 's/ %u/use-tray-icon --start-in-tray/g' /usr/share/applications/signal-desktop.desktop
+
+
+sudo sed -i 's/#MAKEFLAGS/MAKEFLAGS/' /etc/makepkg.conf
+sudo sed -i 's/-j2/-j$(nproc)/' /etc/makepkg.conf
